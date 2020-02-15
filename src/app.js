@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+const port = process.env.PORT || 3000;
 const hbs = require('hbs')
 const path = require('path')
 const publicPathDirectory = path.join(__dirname, '../public')
@@ -7,6 +8,7 @@ const viewsPathDirectory = path.join(__dirname, '../templates/views')
 const partialsDirectory = path.join(__dirname, '../templates/partials')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
+
 
 app.use(express.static(publicPathDirectory))
 app.set('view engine', 'hbs')
@@ -52,6 +54,6 @@ app.get('*', (req, res) => {
         error: 'Page not Found'
     })
 })
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Server is up running @ 3000')
 })
